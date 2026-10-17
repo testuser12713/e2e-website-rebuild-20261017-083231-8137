@@ -6,6 +6,7 @@ export function renderTopTagsSidebar(root, activeTag) {
   const entries = getTopTags(10).map((tag) => ({
     slug: tag.slug,
     name: tag.name,
+    count: tag.count,
     href: tagHref(tag.slug, 1),
   }));
 
