@@ -662,3 +662,33 @@
     padding: 40px 32px;
   }
 }
+
+.page-heading {
+  margin: 0 0 var(--space-4);
+}
+
+.page-heading__title {
+  margin: 0;
+}
+
+.page-heading__subline {
+  max-width: 68ch;
+  margin: var(--space-1) 0 0;
+  font-family: var(--font-family-ui);
+  font-size: 14px;
+  color: var(--color-fg-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.quote-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .quote-list {
+    gap: 20px;
+  }
+}
