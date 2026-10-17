@@ -1,0 +1,10 @@
+{
+  "name": "quotes-to-scrape",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A modern static rebuild of Quotes to Scrape.",
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.mjs\""
+  }
+}
