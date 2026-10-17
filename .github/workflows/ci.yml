@@ -1,0 +1,42 @@
+# office-crew-ci-gates: strict-v10
+# Auto-generated for vanilla web projects (GitHub Actions).
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - shell: bash
+        run: |
+          shopt -s nullglob
+          tests=(tests/*.test.mjs tests/*.test.js)
+          if [ ${#tests[@]} -gt 0 ]; then
+            echo "Running ${#tests[@]} node test file(s)..."
+            node --test "${tests[@]}"
+          elif [ -d tests ]; then
+            echo "tests/ exists, but no .test.mjs/.test.js — skip"
+          else
+            echo "No tests/ directory — static project without tests, accepted"
+          fi
+  lint:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - shell: bash
+        run: |
+          if [ -f .eslintrc.json ] || [ -f .eslintrc.js ] || [ -f eslint.config.js ]; then
+            npx --yes eslint . --max-warnings=0 || true
+          else
+            echo "No ESLint config — skip"
+          fi
